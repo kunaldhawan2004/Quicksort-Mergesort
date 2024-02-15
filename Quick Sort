@@ -1,0 +1,17 @@
+#include <iostream>
+
+int partitionArray(int input[], int start, int end) {
+    int smaller = 0;
+    for (int i = start + 1; i <= end; i++) {
+        if (input[start] >= input[i]) {
+            smaller++;
+        }
+    }
+    std::swap(input[start], input[start + smaller]);
+    int i = start;
+    int j = end;
+    while (i < start + smaller && j > start + smaller) {
+        while (input[i] <= input[start + smaller]) {
+            i++;
+        }
+        while (input[j] > input[start + sma
