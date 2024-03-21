@@ -1,17 +1,61 @@
-#include <iostream>
+#include<iostream>
+using namespace std;
 
 int partitionArray(int input[], int start, int end) {
-    int smaller = 0;
-    for (int i = start + 1; i <= end; i++) {
-        if (input[start] >= input[i]) {
+	int smaller = 0;
+    for (int i = start + 1; i <= end; i++)
+    {
+        if (input[start] >= input[i])
+        {
             smaller++;
         }
     }
-    std::swap(input[start], input[start + smaller]);
+    swap(input[start], input[start + smaller]);
     int i = start;
     int j = end;
-    while (i < start + smaller && j > start + smaller) {
-        while (input[i] <= input[start + smaller]) {
+    while (i < start + smaller && j > start + smaller)// yai while loop index kai liye hai
+    {
+        while (input[i] <= input[start + smaller]){// yai while loop i less
+            i++;}
+        while  (input[j] > input[start + smaller]){
+      j--;}
+       // if (input[i] >= input[start + smaller ]&&input[j] < input[start + smaller] ) // time limit exceeding
+       if (i < start + smaller && j > start + smaller)
+        {// tum soch pa rhe ho hum while loop mujhe apne aap vo i pai rukega jab input[i]>partion sai
+            swap(input[i], input[j]);
             i++;
+            j--;
         }
-        while (input[j] > input[start + sma
+    }
+    return start + smaller;
+}
+
+void quickSort(int input[], int start, int end) {
+
+	if (start >= end)
+        return;
+
+    int c = partitionArray(input, start, end);
+
+    quickSort(input, start, c - 1);
+    quickSort(input, c + 1, end);
+
+
+}
+
+
+int main() {
+    int arr[] = {12, 11, 13, 5, 6, 7};
+    int n = sizeof(arr) / sizeof(arr[0]);
+
+    quickSort(arr, 0, n - 1);
+
+    // Print the sorted array
+    cout << "Sorted array: ";
+    for (int i = 0; i < n; i++) {
+        cout << arr[i] << " ";
+    }
+    cout << endl;
+
+    return 0;
+}
