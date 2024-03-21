@@ -1,4 +1,5 @@
 #include <iostream>
+using namespace std;
 
 void merge(int* arr, int i1, int r1, int i2, int r2) {
     int n = r1 + r2 - i1 - i2 + 2;
@@ -48,11 +49,11 @@ int main() {
     mergeSort(arr, 0, n - 1);
 
     // Print the sorted array
-    std::cout << "Sorted array: ";
+    cout << "Sorted array: ";
     for (int i = 0; i < n; i++) {
-        std::cout << arr[i] << " ";
+        cout << arr[i] << " ";
     }
-    std::cout << std::endl;
+    cout <<endl;
 
     return 0;
 }
